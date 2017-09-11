@@ -14,7 +14,9 @@ import{AddVendorService} from './vendorAdd/vendorAdd.service'
 export class AppComponent {
   signUpVisibilityFlag:boolean=true;
   patientInfo:any;
-  constructor(){
+  companies:String[];
+  heading:any;
+  constructor(private appService:AppService){
     localStorage.clear();
   }
 
@@ -23,6 +25,32 @@ export class AppComponent {
      this.signUpVisibilityFlag = JSON.parse(localStorage.getItem('signUpFlag'));
      this.patientInfo = JSON.parse(localStorage.getItem('patientDetails'))
     console.log("login "+this.signUpVisibilityFlag)
+}
+
+stop(event){
+  console.log("In stop")
+
+  console.log("dkdjds"+event.target.value);
+  this.heading=event.target.value;
+
+  if(event.target.value == "VendorCompany"){
+    this.appService.getCompany().
+    subscribe(dbCompanies=>{
+       console.log(dbCompanies);
+       this.companies= dbCompanies;
+       console.log("Array"+this.companies)
+    })
+  }
+        event.stopPropagation();
+  
+
+}
+filter(event){
+  
+}
+getCompany(event){
+ 
+  
 }
 logout(){
   localStorage.clear();
