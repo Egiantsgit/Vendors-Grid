@@ -84,6 +84,7 @@ export class AddVendorComponent implements OnInit
 
 
     }
+
     //this.vendorService.setData("vendor_id",updateVendor.vendor_id);
     this.vendorService.setData("vendorCompanyName",updateVendor.vendorCompanyName);
     this.vendorService.setData("personName",updateVendor.personName);
@@ -98,7 +99,9 @@ export class AddVendorComponent implements OnInit
 
     this.vendorService.postData(this.vendorData).subscribe(result =>{
         console.log(result);
+        f.reset();
         this.myGrid.updateRowData();
+        
         //this.router.navigate(['grid']);
       },
       error =>{

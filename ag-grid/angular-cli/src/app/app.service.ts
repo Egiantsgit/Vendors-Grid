@@ -27,5 +27,20 @@ export class AppService{
         return this.http.get('http://localhost:9090/patient/login?username='+username+'&password='+password)
         .map(res => res.json());
             }
+    getCompany(){
+        return this.http.get('http://localhost:9090/vendor/getCompany')
+        .map(res => res.json());
+    }
+    filterByCompany(company){
+        return this.http.get('http://localhost:9090/vendor/filterCompany?filterValue='+company)
+        .map(res => res.json());
+    }
+    searchByValue(searchValue)
+    {
+        return this.http.get('http://localhost:9090/vendor/search?searchValue='+searchValue)
+        .map(res => res.json());
+    }
 
+
+    
 }
